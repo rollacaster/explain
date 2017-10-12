@@ -1,12 +1,12 @@
+(setq explain-dir (file-name-directory (or load-file-name buffer-file-name)))
+
 (defun explain-emacs ()
   "Explains emacs to your coworkers."
   (interactive)
-  (let ((newFrame (make-frame))
-        (modeLine mode-line-format))
-    (when window-system (set-frame-size newFrame 39 18))
+  (let ((newFrame (make-frame '((width . 34) (height . 15)))))
     (switch-to-buffer-other-frame (buffer-name))
     (setq inhibit-message t)
-    (find-file "magic.gif")
+    (find-file (concat explain-dir "magic.gif"))
     (image-toggle-animation)
-    (run-at-time "3 sec" nil 'delete-frame)
+    (run-at-time "4 sec" nil 'delete-frame)
     (setq inhibit-message nil)))
